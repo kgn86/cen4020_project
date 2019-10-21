@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_parking"
+        android:icon="@drawable/parking_icon"
+        android:title="@string/parking_tab" />
+
+    <item
+        android:id="@+id/navigation_bus"
+        android:icon="@drawable/bus_icon"
+        android:title="@string/bus_tab" />
+</menu>
