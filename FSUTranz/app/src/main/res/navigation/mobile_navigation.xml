@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_parking">
+
+    <fragment
+        android:id="@+id/navigation_parking"
+        android:name="edu.fsu.cs.fsutranz.ui.parking.ParkingFragment"
+        android:label="@string/parking_tab"
+        tools:layout="@layout/fragment_phone" />
+
+    <fragment
+        android:id="@+id/navigation_bus"
+        android:name="edu.fsu.cs.fsutranz.ui.bus.BusFragment"
+        android:label="@string/bus_tab"
+        tools:layout="@layout/fragment_bus" />
+</navigation>

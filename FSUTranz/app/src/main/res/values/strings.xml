@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">FSUTranz</string>
+    <string name="parking_tab">Parking</string>
+    <string name="bus_tab">Bus</string>
+    <string name="parking_lot">Parking Lot</string>
+    <string name="spots">Open Spots</string>
+    <string name="spotNum">1001</string>
+    <string name="Info">Info</string>
+    <string name="announcements">Announcements</string>
+</resources>
