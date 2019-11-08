@@ -7,8 +7,7 @@ public class createItem {
     private String parkingText; //The parking garage
 
     //Creates the item
-    public createItem(int imageResource, int progress, String slots, String text1) {
-        imageResourceInt = imageResource;
+    public createItem(int progress, String slots, String text1) {
         progressNum = progress;
         parkingText = text1;
         openSlots = slots;
@@ -21,10 +20,6 @@ public class createItem {
     //Number of open spots
     public String getOpenSlots() {
         return openSlots;
-    }
-    //Set icon
-    public int getImageResource() {
-        return imageResourceInt;
     }
     //Set progress bar
     public int getProgressNum() {

@@ -9,7 +9,7 @@
         android:id="@+id/navigation_parking"
         android:name="edu.fsu.cs.fsutranz.ui.parking.ParkingFragment"
         android:label="@string/parking_tab"
-        tools:layout="@layout/fragment_phone" />
+        tools:layout="@layout/fragment_parking" />
 
     <fragment
         android:id="@+id/navigation_bus"

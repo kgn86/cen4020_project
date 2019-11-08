@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -32,14 +31,12 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
 
     //This is the view Holder that will link the xml and java
     public static class eViewHolder extends RecyclerView.ViewHolder {
-        public ImageView itemImageView;
         public TextView parkingText;
         public TextView remainingSlots;
         public ProgressBar parkingCapacity;
 
         public eViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
-            itemImageView = itemView.findViewById(R.id.imageView);
             parkingText = itemView.findViewById(R.id.txtParking);
             remainingSlots = itemView.findViewById(R.id.parkingSlots);
             parkingCapacity = itemView.findViewById(R.id.progressBar);
@@ -77,7 +74,6 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
         createItem currentItem = itemArrayList.get(position); //This creates the current item
 
         //Setting the items values based on the information passed to them
-        holder.itemImageView.setImageResource(currentItem.getImageResource());
         holder.parkingText.setText(currentItem.getText1());
         holder.remainingSlots.setText(currentItem.getOpenSlots());
         holder.parkingCapacity.setProgress(currentItem.getProgressNum());
