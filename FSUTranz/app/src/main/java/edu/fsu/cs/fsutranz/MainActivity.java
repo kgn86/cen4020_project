@@ -1,5 +1,6 @@
 package edu.fsu.cs.fsutranz;
 
+import java.util.List;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -18,6 +19,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import edu.fsu.cs.fsutranz.ui.bus.BusFragment;
 import edu.fsu.cs.fsutranz.ui.parking.ParkingFragment;
 
 public class MainActivity extends AppCompatActivity implements ParkingFragment.OnParkingFragmentInteractionListener {
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
 
     private String[] buffer = new String[]{};
     private String[] data;
+    private String[] stopNames = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,14 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         buffer = new RetrieveParkingData().doInBackground();
         data = new String[buffer.length];
 
+        Bus_Route gold = new Bus_Route(4007312);
+        gold.GetStops();
+        List<String>stopList = gold.GetStopNames();
+        stopNames = new String[stopList.size()];
+        for (int i = 0; i < stopNames.length; i++) {
+            stopNames[i] += stopList.get(i);
+        }
+
         // if no data is available, the website we are scraping from displays "NO RECORDS" and nothing else...
         if(!buffer[0].equals("NO RECORDS")) {
             for (int i = 0; i < usefulIndexes.length; i++) {
@@ -97,5 +108,9 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
 
     public String[] getData(){
         return data;
+    }
+
+    public String[] getStopNames(){
+        return stopNames;
     }
 }
