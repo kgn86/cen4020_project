@@ -26,7 +26,7 @@ import edu.fsu.cs.fsutranz.ui.parking.itemAdapter;
 public class BusFragment extends Fragment {
 
     private BusViewModel busViewModel;
-    private ParkingFragment.OnParkingFragmentInteractionListener helper;
+    private BusFragment.OnBusFragmentInteractionListener helper;
 
 
     public BusFragment() {
@@ -44,13 +44,14 @@ public class BusFragment extends Fragment {
         busViewModel = ViewModelProviders.of(this).get(BusViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bus, container, false);
 
-        Bus_Route gold = new Bus_Route(4007326);
+        Bus_Route gold = new Bus_Route(4007348);
         gold.GetStops();
         List<String> stops = gold.GetStopNames();
         ArrayList<createItem> items = new ArrayList<>();
 
         for (int i = 0; i < stops.size(); i++){
-            items.add(new createItem(stops.get(i), i));
+            double arrivalTime = gold.GetPredictedTime(stops.get(i));
+            items.add(new createItem(stops.get(i), i, arrivalTime));
         }
 
         RecyclerView recyclerView = root.findViewById(R.id.stopsRecycler);
@@ -64,11 +65,11 @@ public class BusFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof ParkingFragment.OnParkingFragmentInteractionListener) {
-            helper = (ParkingFragment.OnParkingFragmentInteractionListener) context;
+        if (context instanceof BusFragment.OnBusFragmentInteractionListener) {
+            helper = (BusFragment.OnBusFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnParkingFragmentInteractionListener");
+                    + " must implement OnBusFragmentInteractionListener");
         }
     }
 

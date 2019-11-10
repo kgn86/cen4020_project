@@ -31,11 +31,14 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
     public static class eViewHolder extends RecyclerView.ViewHolder {
         public TextView stopName;
         public TextView stopNum;
+        public TextView arrivingIn;
 
         public eViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             stopName = itemView.findViewById(R.id.txtStop);
             stopNum = itemView.findViewById(R.id.txtStopNum);
+            arrivingIn = itemView.findViewById(R.id.txtArriving);
+
 
             //Used to get items positions and make them clickable
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +75,7 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
         //Setting the items values based on the information passed to them
         holder.stopName.setText(currentItem.getBusStopName());
         holder.stopNum.setText(Integer.toString(currentItem.getBusStopNum()));
+        holder.arrivingIn.setText("Arriving in " + currentItem.getArrivalTime() + " minutes");
 
     }
 

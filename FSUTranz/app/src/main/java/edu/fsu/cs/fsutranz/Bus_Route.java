@@ -2,6 +2,8 @@
 // Uses org.json package to parse JSON Strings
 
 package edu.fsu.cs.fsutranz;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -48,7 +50,7 @@ public class Bus_Route {
 
 		int i = stopNames.indexOf(stopName);
 		if(i == -1) {
-			System.out.println("Stop name: " + stopName + " not found...");
+			Log.d("TAG", "Stop name: " + stopName + " not found...");
 			return -1;
 		}
 		int stopID = stopIDs.get(i);
@@ -58,7 +60,7 @@ public class Bus_Route {
 
  		long time = System.currentTimeMillis() / 1000;
  		
- 		double predTime = (double)timestamp - time;
+ 		double predTime = (double)timestamp - (double)time;
  		predTime = predTime / 60;
  		
  		DecimalFormat df = new DecimalFormat("0.00");
@@ -135,7 +137,6 @@ public class Bus_Route {
 		
 		refreshJSON(this.arrivals_url);
 
-
 		//full body of response
 		JSONObject json = null;
 		List<Integer> timestamps = null;
@@ -165,6 +166,8 @@ public class Bus_Route {
 			e.printStackTrace();
 		}
 
+		timestamps.add(0);
+		a_IDs.add(0);
 		//assign member data
 		this.arrivalTimestamps = timestamps;
 		this.arrivalIDs = a_IDs;

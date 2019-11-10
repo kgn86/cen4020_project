@@ -22,7 +22,7 @@ import androidx.navigation.ui.NavigationUI;
 import edu.fsu.cs.fsutranz.ui.bus.BusFragment;
 import edu.fsu.cs.fsutranz.ui.parking.ParkingFragment;
 
-public class MainActivity extends AppCompatActivity implements ParkingFragment.OnParkingFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ParkingFragment.OnParkingFragmentInteractionListener, BusFragment.OnBusFragmentInteractionListener {
 
     // debug to see values inside String[] data
     // basically just includes all useful information related to what we need
