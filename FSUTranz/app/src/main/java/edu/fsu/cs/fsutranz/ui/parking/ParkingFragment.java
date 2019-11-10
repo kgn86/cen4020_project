@@ -53,6 +53,7 @@ public class ParkingFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_parking, container, false);
 
         String[] data = helper.getData();
+        helper.setActionBarTitle();
 
         Garage call = new Garage("Call Street");
         Garage stAug = new Garage("Saint Augustine Street");
@@ -71,6 +72,8 @@ public class ParkingFragment extends Fragment {
                 //garages[i].name = data[dataIndex].substring(10, data[dataIndex++].length()-1);
 
                 dataIndex++;
+
+                //ask Robby if you're confused about the substring indexes
                 garages[i].occupied = Integer.parseInt(data[dataIndex].substring(13, data[dataIndex++].length()));
                 garages[i].capacity = Integer.parseInt(data[dataIndex].substring(13, data[dataIndex++].length()));
                 garages[i].threshold = Integer.parseInt(data[dataIndex].substring(14, data[dataIndex++].length()));
@@ -153,5 +156,6 @@ public class ParkingFragment extends Fragment {
     public interface OnParkingFragmentInteractionListener {
         void refreshData();
         String[] getData();
+        void setActionBarTitle();
     }
 }
