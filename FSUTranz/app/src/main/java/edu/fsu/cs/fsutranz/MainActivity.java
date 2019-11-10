@@ -1,6 +1,5 @@
 package edu.fsu.cs.fsutranz;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -17,6 +16,10 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import edu.fsu.cs.fsutranz.ui.parking.ParkingFragment;
 
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
 
     private String[] buffer = new String[]{};
     private String[] data;
+    private String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +93,19 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
             for (int i = 0; i < usefulIndexes.length; i++) {
                 data[i] = buffer[usefulIndexes[i]];
             }
+
+            // index 9 holds last updated time for parking data
+            time = buffer[9].substring(buffer[9].length()-20, buffer[9].length()-10);
+            time += " ";
+            time += buffer[9].substring(buffer[9].length()-9, buffer[9].length()-4);
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("hh:mm aa");       // format to only get hour(1-12) and minute
+                try{
+                    Date date = dateFormat.parse(time);
+                    time = outputFormat.format(date);
+                }
+                catch(ParseException pe){}
         }
         else{
             data[0] = "NO RECORDS";
@@ -97,5 +114,10 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
 
     public String[] getData(){
         return data;
+    }
+
+    public void setActionBarTitle() {
+        getSupportActionBar().setTitle("Last updated: "+time);
+        getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.garnet));
     }
 }
