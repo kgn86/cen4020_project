@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
     private String[] data;
 
     private String time;
+    private double[] stopTimes = null;
     private String[] stopNames = null;
 
 
@@ -95,14 +96,6 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         buffer = new RetrieveParkingData().doInBackground();
         data = new String[buffer.length];
 
-        Bus_Route gold = new Bus_Route(4007312);
-        gold.GetStops();
-        List<String>stopList = gold.GetStopNames();
-        stopNames = new String[stopList.size()];
-        for (int i = 0; i < stopNames.length; i++) {
-            stopNames[i] += stopList.get(i);
-        }
-
         // if no data is available, the website we are scraping from displays "NO RECORDS" and nothing else...
         if(!buffer[0].equals("NO RECORDS")) {
             for (int i = 0; i < usefulIndexes.length; i++) {
@@ -133,11 +126,26 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
 
 
     public void setActionBarTitle() {
-        getSupportActionBar().setTitle("Last updated: "+time);
+        getSupportActionBar().setTitle("Last updated: " + time);
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.garnet));
+    }
+
+    public void refreshBusData(){
+        Bus_Route test = new Bus_Route(4007312);
+        test.PredictedTimes();
+        //Bus_Route nite = new Bus_Route(4007312)
+        //Bus_Route gold = new Bus_Route(4008290);
+        //Bus_Route garnet = new Bus_Route(4008288);
+        stopNames = test.GetStopNames();
+        stopTimes = test.GetPredTimes();
+
+    }
+
+    public double[] getPredTimes(){
+        return stopTimes;
+    }
 
     public String[] getStopNames(){
         return stopNames;
-
     }
 }

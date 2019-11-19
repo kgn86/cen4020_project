@@ -36,7 +36,7 @@ public class BusFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        helper.refreshData();
+        helper.refreshBusData();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,14 +44,13 @@ public class BusFragment extends Fragment {
         busViewModel = ViewModelProviders.of(this).get(BusViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bus, container, false);
 
-        Bus_Route gold = new Bus_Route(4007348);
-        gold.GetStops();
-        List<String> stops = gold.GetStopNames();
+
+        String[] stops = helper.getStopNames();
+        double[] predTimes = helper.getPredTimes();
         ArrayList<createItem> items = new ArrayList<>();
 
-        for (int i = 0; i < stops.size(); i++){
-            double arrivalTime = gold.GetPredictedTime(stops.get(i));
-            items.add(new createItem(stops.get(i), i, arrivalTime));
+        for (int i = 0; i < stops.length; i++){
+            items.add(new createItem(stops[i], i, predTimes[i]));
         }
 
         RecyclerView recyclerView = root.findViewById(R.id.stopsRecycler);
@@ -80,7 +79,8 @@ public class BusFragment extends Fragment {
     }
 
     public interface OnBusFragmentInteractionListener {
-        void refreshData();
+        void refreshBusData();
         String[] getStopNames();
+        double[] getPredTimes();
     }
 }

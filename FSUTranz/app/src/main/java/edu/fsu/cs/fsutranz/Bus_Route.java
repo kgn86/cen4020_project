@@ -27,13 +27,14 @@ public class Bus_Route {
 	private String arrivals_url = "https://api.transloc.com/feeds/3/vehicle_statuses?include_arrivals=true&agencies=649&routes=";
 	private	String stops_url = "https://api.transloc.com/feeds/3/stops?include_routes=true&agencies=649&routes=";
 	private String fullJSON;
-	private List<String> stopNames = new ArrayList<String>();
-	private List<Integer> stopIDs = new ArrayList<Integer>();
-	private List<Integer> arrivalTimestamps = new ArrayList<Integer>();
-	private List<Integer> arrivalIDs = new ArrayList<Integer>();
-	
+	private String[] stopNames = null;
+	private double[] predTimes = null;
+	private List<Integer> arrivalTimestamps;
+	private List<Integer> stopIDs;
+	private List<Integer> arrivalIDs;
+
 	public Bus_Route(int routeID) {
-		
+
 		//Finish URLs
 		String a_url_end = "&schedules=true&include_out_of_service=true";
 		this.arrivals_url += Integer.toString(routeID);
@@ -41,32 +42,22 @@ public class Bus_Route {
 		this.stops_url += Integer.toString(routeID);
 
 	}
-	
+
 	//Finds predicted time given the name of a stop
 	//Returns -1 if stop name is not found in list of stops
-	public double GetPredictedTime(String stopName) {
+	public void PredictedTimes() {
 		this.GetArrivals();
 		this.GetStops();
+		this.predTimes = new double[this.stopNames.length];
 
-		int i = stopNames.indexOf(stopName);
-		if(i == -1) {
-			Log.d("TAG", "Stop name: " + stopName + " not found...");
-			return -1;
+		for (int i = 0; i < this.stopNames.length; i++){
+			long timestamp = arrivalTimestamps.get(i);
+			long currTime = System.currentTimeMillis() / 1000;
+			double predTime = (double)timestamp - (double)currTime;
+			predTime = predTime / 60;
+			this.predTimes[i] = predTime;
 		}
-		int stopID = stopIDs.get(i);
-		i = arrivalIDs.indexOf(stopID);
-		long timestamp = arrivalTimestamps.get(i);
 
-
- 		long time = System.currentTimeMillis() / 1000;
- 		
- 		double predTime = (double)timestamp - (double)time;
- 		predTime = predTime / 60;
- 		
- 		DecimalFormat df = new DecimalFormat("0.00");
- 		df.format(predTime);
- 		
-		return predTime;
 	}
 
 	private void refreshJSON(String link){
@@ -97,14 +88,14 @@ public class Bus_Route {
 			conn.disconnect();
 		}
 	}
-	
+
 	public void GetStops(){
 
 		refreshJSON(this.stops_url);
 		//full body of response
 		JSONObject json = null;
-		List<String> s_names = null;
-		List<Integer> s_IDs = null;
+		List<String> s_names = new ArrayList<>();
+		List<Integer> s_IDs = new ArrayList<>();
 		try {
 			json = new JSONObject(this.fullJSON);
 			//JSON array of stops
@@ -120,37 +111,38 @@ public class Bus_Route {
 				stop = (JSONObject) stops.get(i);
 				String sN = (String) stop.get("name");
 				Integer sID = (Integer) stop.get("id");
-				s_names.add(sN);
-				s_IDs.add(sID);
+				if (!s_IDs.contains(sID)) {
+					s_names.add(sN);
+					s_IDs.add(sID);
+				}
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 
-		s_names.add("");
-		s_IDs.add(0);
-		this.stopNames = s_names;
+		this.stopNames = new String[s_names.size()];
+
+		// List<String> to String[]
+		for (int i = 0; i < s_names.size(); i++){
+			this.stopNames[i] = s_names.get(i);
+		}
 		this.stopIDs = s_IDs;
 	}
-	
+
 	public void GetArrivals() {
-		
+
 		refreshJSON(this.arrivals_url);
 
 		//full body of response
 		JSONObject json = null;
-		List<Integer> timestamps = null;
-		List<Integer> a_IDs = null;
+		List<Integer> timestamps = new ArrayList<>();
+		List<Integer> a_IDs = new ArrayList<>();
 
 		try {
 			json = new JSONObject(this.fullJSON);
 			//JSON array of arrivals
 			JSONArray arrivals = (JSONArray) json.get("arrivals");
 			JSONObject arrival;
-
-			//List of arrival timestamps/IDs
-			timestamps = new ArrayList();
-			a_IDs = new ArrayList();
 
 			//arrival names/IDs
 			for (int i = 0; i < arrivals.length(); i++) {
@@ -166,17 +158,14 @@ public class Bus_Route {
 			e.printStackTrace();
 		}
 
-		timestamps.add(0);
-		a_IDs.add(0);
-		//assign member data
 		this.arrivalTimestamps = timestamps;
 		this.arrivalIDs = a_IDs;
-		
+
 	}
-	
-	public List<String> GetStopNames(){
-		return this.stopNames;
-	}
-		
+
+	public double[] GetPredTimes(){ return this.predTimes; }
+
+	public String[] GetStopNames(){ return this.stopNames; }
+
 }
 
