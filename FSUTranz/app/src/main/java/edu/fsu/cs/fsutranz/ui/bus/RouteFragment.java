@@ -12,8 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
-
+import java.math.BigDecimal;
 import edu.fsu.cs.fsutranz.R;
 
 //Represents a tab in BusFragment's view pager
@@ -46,9 +47,6 @@ public class RouteFragment extends Fragment {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_route, container, false);
 
-        String[] stopNames = null;
-        double[] stopTimes = null;
-
         if (route == "gold"){
             helper.refreshGoldData();
             stopNames = helper.getGoldStopNames();
@@ -60,11 +58,19 @@ public class RouteFragment extends Fragment {
             stopTimes = helper.getGarnetPredTimes();
         }
 
+        //Creating items for recycler view
         ArrayList<createItem> items = new ArrayList<>();
         for (int i = 0; i < stopNames.length; i++){
-            items.add(new createItem(stopNames[i], i, stopTimes[i]));
+
+            //Rounds double to two places
+            BigDecimal bd = new BigDecimal(Double.toString(stopTimes[i]));
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            double roundedDouble = bd.doubleValue();
+
+            items.add(new createItem(stopNames[i], i, roundedDouble));
         }
 
+        //Setting up recycler view and its adapter
         RecyclerView recyclerView = root.findViewById(R.id.stopsRecycler);
         RecyclerView.LayoutManager itemLayoutManager = new LinearLayoutManager(getContext()); //Layout is based on this context
         edu.fsu.cs.fsutranz.ui.bus.itemAdapter itemsAdapter = new edu.fsu.cs.fsutranz.ui.bus.itemAdapter(items); //itemAdapter to display items which loads the list of items

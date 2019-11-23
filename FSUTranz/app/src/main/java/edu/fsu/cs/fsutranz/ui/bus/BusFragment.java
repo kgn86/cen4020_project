@@ -34,6 +34,7 @@ public class BusFragment extends Fragment {
         busViewModel = ViewModelProviders.of(this).get(BusViewModel.class);
         View root = inflater.inflate(R.layout.fragment_bus, container, false);
 
+        //Initialize the view page and its adapter
         BusFragmentPagerAdapter busAdapter = new BusFragmentPagerAdapter(getChildFragmentManager());
         pager = root.findViewById(R.id.busPager);
         pager.setAdapter(busAdapter);
@@ -44,20 +45,23 @@ public class BusFragment extends Fragment {
 }
 
 class BusFragmentPagerAdapter extends FragmentStatePagerAdapter {
+
     public BusFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
+
+    //Creates a RouteFragment for each tab
     public Fragment getItem(int i) {
         Fragment fragment = new RouteFragment(i);
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
         return fragment;
     }
 
+    //Number of tabs
     public int getCount() {
         return 2;
     }
 
+    //Set tab texts
     public CharSequence getPageTitle(int position) {
         if (position == 0){
             return "GOLD";
@@ -65,6 +69,6 @@ class BusFragmentPagerAdapter extends FragmentStatePagerAdapter {
         else if (position == 1){
             return "GARNET";
         }
-        return "INVALID";
+        return "";
     }
 }

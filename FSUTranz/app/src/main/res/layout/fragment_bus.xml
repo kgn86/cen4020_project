@@ -14,7 +14,8 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorColor="#D4AF37">
+            app:tabTextColor="@color/gold"
+            app:tabIndicatorColor="@color/gold">
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/goldTab"
