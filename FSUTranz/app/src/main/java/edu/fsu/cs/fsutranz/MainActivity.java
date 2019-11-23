@@ -25,9 +25,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.fsu.cs.fsutranz.ui.bus.BusFragment;
+import edu.fsu.cs.fsutranz.ui.bus.RouteFragment;
 import edu.fsu.cs.fsutranz.ui.parking.ParkingFragment;
 
-public class MainActivity extends AppCompatActivity implements ParkingFragment.OnParkingFragmentInteractionListener, BusFragment.OnBusFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity implements ParkingFragment.OnParkingFragmentInteractionListener, RouteFragment.OnRouteFragmentInteractionListener {
 
     // debug to see values inside String[] data
     // basically just includes all useful information related to what we need
@@ -44,8 +45,12 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
     private String[] data;
 
     private String time;
-    private double[] stopTimes = null;
-    private String[] stopNames = null;
+    private double[] goldStopTimes = null;
+    private String[] goldStopNames = null;
+    private double[] garnetStopTimes = null;
+    private String[] garnetStopNames = null;
+    private double[] niteStopTimes = null;
+    private String[] niteStopNames = null;
 
 
     @Override
@@ -130,22 +135,27 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(R.color.garnet));
     }
 
-    public void refreshBusData(){
-        Bus_Route test = new Bus_Route(4007312);
-        test.PredictedTimes();
-        //Bus_Route nite = new Bus_Route(4007312)
-        //Bus_Route gold = new Bus_Route(4008290);
-        //Bus_Route garnet = new Bus_Route(4008288);
-        stopNames = test.GetStopNames();
-        stopTimes = test.GetPredTimes();
+    public void refreshGoldData(){
+        //nite = 4007312
+        //gold = 4008290
+        //garnet = 4008288
+        Bus_Route gold = new Bus_Route(4007312);
+        gold.PredictedTimes();
+        goldStopNames = gold.GetStopNames();
+        goldStopTimes = gold.GetPredTimes();
+    }
+
+    public void refreshGarnetData(){
+        Bus_Route garnet = new Bus_Route(4007312);
+        garnet.PredictedTimes();
+        garnetStopNames = garnet.GetStopNames();
+        garnetStopTimes = garnet.GetPredTimes();
 
     }
 
-    public double[] getPredTimes(){
-        return stopTimes;
-    }
+    public double[] getGoldPredTimes()   { return goldStopTimes; }
+    public String[] getGoldStopNames()   { return goldStopNames; }
+    public double[] getGarnetPredTimes() { return garnetStopTimes; }
+    public String[] getGarnetStopNames() { return garnetStopNames; }
 
-    public String[] getStopNames(){
-        return stopNames;
-    }
 }

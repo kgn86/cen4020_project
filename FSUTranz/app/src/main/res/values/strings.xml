@@ -7,4 +7,7 @@
     <string name="spotNum">1001</string>
     <string name="Info">Info</string>
     <string name="announcements">Announcements</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
