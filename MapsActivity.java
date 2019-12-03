@@ -1,8 +1,12 @@
 package com.example.myapplication;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +33,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapsActivity extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+public class MapsActivity extends Fragment implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener,
+                                                                            GoogleMap.OnMarkerClickListener {
 
     private static final String TAG = "MapsActivity";
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -91,7 +96,7 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
             mMap.setMyLocationEnabled(true);
         }
         //initialize markers on map fragment
-        //Customize map markers with image of garage and name a the top of marker
+        //Customize map markers with a garage tag and name a the top of marker
         mSpirit = mMap.addMarker(new MarkerOptions()
                 .position(SPIRIT)
                 .title("Spirit Garage")
@@ -102,21 +107,18 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
                 .position(CALL_STREET)
                 .title("Call Street Garage")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.callstreettag)));
-
         mCall_St.setTag(0);
 
         mPensacola = mMap.addMarker(new MarkerOptions()
                 .position(PENSACOLA)
                 .title("West Pensacola Street Garage")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.pensacolatag)));
-
         mPensacola.setTag(0);
 
         mSt_Aug = mMap.addMarker(new MarkerOptions()
                 .position(SAINT_AUGUSTINE)
                 .title("St Augustine Garage")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.staugtag))); //175px
-
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.staugtag)));
         mSt_Aug.setTag(0);
 
         mTraditions = mMap.addMarker(new MarkerOptions()
@@ -130,8 +132,11 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
                 .title("Woodward Garage")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.woodwardtag)));
         mWoodward.setTag(0);
+
+        mMap.setOnInfoWindowClickListener(this);
     }
 
+    //Method to get the devices current location
     private void getDeviceLocation(){
     Log.d(TAG, "getDeviceLocation: getting the devices current location");
     mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -161,7 +166,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
         }
     }
     private void moveCamera(LatLng latlng, float zoom, String title){
-        Log.d(TAG, "moveCamera: moving the camera to: lat: " + latlng.latitude + ", lng: " + latlng.longitude);
+        Log.d(TAG, "moveCamera: moving the camera to: lat: " + latlng.latitude + ", lng: " +
+                                                                    latlng.longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latlng, zoom));
     }
 
@@ -193,7 +199,8 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         Log.d(TAG, "onRequestPermissionsResult: called");
         LocationPermissionGranted = false;
 
@@ -215,8 +222,48 @@ public class MapsActivity extends Fragment implements OnMapReadyCallback, Google
         }
     }
 
+    //We don't want to do anything else with this, so return false
     @Override
     public boolean onMarkerClick(Marker marker) {
         return false;
+    }
+
+    //Method that makes info window clickable to reroute you to maps
+    //and give directions
+    @Override
+    public void onInfoWindowClick(final Marker marker) {
+        if(marker.getTitle().contains("Garage")){
+            final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+            builder.setMessage("Open Google Maps?") //prompt message to open maps
+                    .setCancelable(true)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(@SuppressWarnings("unused") final DialogInterface dialog,
+                                            @SuppressWarnings("unused") final int id) {
+                            String latitude = String.valueOf(marker.getPosition().latitude);
+                            String longitude = String.valueOf(marker.getPosition().longitude);
+                            Uri gmmIntentUri = Uri.parse("google.navigation:q=" + latitude + "," +
+                                    longitude); //from Google documentation
+                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                            mapIntent.setPackage("com.google.android.apps.maps");
+
+                            try{
+                                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                                    startActivity(mapIntent);
+                                }
+                            }catch (NullPointerException e){
+                                Log.e(TAG, "onClick: NullPointerException: Couldn't open map." + e.getMessage() );
+                                Toast.makeText(getActivity(), "Couldn't open map", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                            dialog.cancel();
+                        }
+                    });
+            final AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 }

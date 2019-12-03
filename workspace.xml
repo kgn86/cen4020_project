@@ -74,8 +74,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="21" column="43" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="43" />
+            <state relative-caret-position="-3">
+              <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -86,10 +86,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MapsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="117" column="90" selection-start-line="117" selection-start-column="90" selection-end-line="117" selection-end-column="90" />
+            <state relative-caret-position="184">
+              <caret line="243" column="98" lean-forward="true" selection-start-line="243" selection-start-column="98" selection-end-line="243" selection-end-column="98" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2642#2643#0" expanded="true" />
+                <element signature="e#2692#2693#0" expanded="true" />
+                <element signature="e#5958#6797#0" expanded="true" />
+                <element signature="e#6796#6797#0" expanded="true" />
+                <element signature="e#9426#9427#0" expanded="true" />
+                <element signature="e#9454#9455#0" expanded="true" />
+                <element signature="e#9805#11068#0" expanded="true" />
+                <element signature="e#9889#9916#0" expanded="true" />
+                <element signature="e#9947#9974#0" expanded="true" />
+                <element signature="e#11067#11068#0" expanded="true" />
+                <element signature="e#11115#11365#0" expanded="true" />
+                <element signature="e#11229#11256#0" expanded="true" />
+                <element signature="e#11364#11365#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,15 +157,16 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="948" />
-    <option name="y" value="-12" />
-    <option name="width" value="984" />
-    <option name="height" value="1104" />
+    <option name="width" value="981" />
+    <option name="height" value="1092" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -170,29 +184,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="My Application" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="My Application" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="My Application" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -200,7 +191,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-11-25T23:02:47.012Z" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cen4020_project-BusRoutes/cen4020_project-BusRoutes/FSUTranz" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -213,6 +204,9 @@
     <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.example.myapplication" />
+    </key>
     <key name="android.template.packageName">
       <recent name="com.example.myapplication" />
     </key>
@@ -325,7 +319,7 @@
     <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.17732793" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.17732793" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -340,7 +334,7 @@
       <window_info anchor="bottom" id="Terminal" order="4" sideWeight="0.49936467" weight="0.3283582" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50252104" side_tool="true" weight="0.4610282" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.64944357" visible="true" weight="0.24875621" />
+      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.64944357" visible="true" weight="0.24875621" />
       <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.3283582" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3283582" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -390,12 +384,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
         </state>
       </provider>
+      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
       <provider selected="true" editor-type-id="text-editor" />
@@ -428,6 +422,9 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/staugtag.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/traditionstag.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -458,16 +455,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="21" column="43" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MapViewModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -478,15 +465,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/traditionstag.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3">
+          <caret line="21" column="43" lean-forward="true" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/myapplication/MapsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="117" column="90" selection-start-line="117" selection-start-column="90" selection-end-line="117" selection-end-column="90" />
+        <state relative-caret-position="184">
+          <caret line="243" column="98" lean-forward="true" selection-start-line="243" selection-start-column="98" selection-end-line="243" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2642#2643#0" expanded="true" />
+            <element signature="e#2692#2693#0" expanded="true" />
+            <element signature="e#5958#6797#0" expanded="true" />
+            <element signature="e#6796#6797#0" expanded="true" />
+            <element signature="e#9426#9427#0" expanded="true" />
+            <element signature="e#9454#9455#0" expanded="true" />
+            <element signature="e#9805#11068#0" expanded="true" />
+            <element signature="e#9889#9916#0" expanded="true" />
+            <element signature="e#9947#9974#0" expanded="true" />
+            <element signature="e#11067#11068#0" expanded="true" />
+            <element signature="e#11115#11365#0" expanded="true" />
+            <element signature="e#11229#11256#0" expanded="true" />
+            <element signature="e#11364#11365#0" expanded="true" />
           </folding>
         </state>
       </provider>
