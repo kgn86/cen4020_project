@@ -14,6 +14,7 @@ def main():
 
     collect(garages)
     merge_pts(garages)
+
     print(output_json(garages))
 
 
@@ -33,8 +34,11 @@ def print_pts(garages):
             print('pt: %d\ttype:%s' % (pt.pt, pt.t))
         return
 
+
 def collect(garages):
     for root, dirs, files in os.walk('./sample'):
+         
+        i = 0
         for fname in files:
             f = open(os.path.join(root, fname))
             d = f.read().replace("'", '"')
@@ -64,8 +68,12 @@ def collect(garages):
                         ins_pt('med')
                     else:
                         ins_pt('low')
-    return
 
+        if i == 10:
+            break
+
+    for name in garages:
+        garages[name].sort()
 
 def merge_pts(garages):
     for g in garages.values():
@@ -81,15 +89,16 @@ def merge_pts(garages):
                 itr_max -= 1
             else:
                 i += 1
- 
-    return
+    return garages
+
 
 def output_json(garages):
     j = {}
+
     for name in garages:
         j[name] = garages[name]
 
-    return json.dumps(j, indent=4, sort_keys=True)
+    return json.dumps(j)
 
 if __name__ == '__main__':
     main()
