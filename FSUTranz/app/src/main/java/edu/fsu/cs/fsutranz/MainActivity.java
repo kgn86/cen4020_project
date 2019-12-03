@@ -49,8 +49,12 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
     private String[] goldStopNames = null;
     private double[] garnetStopTimes = null;
     private String[] garnetStopNames = null;
-    private double[] niteStopTimes = null;
-    private String[] niteStopNames = null;
+    private double[] renegadeStopTimes = null;
+    private String[] renegadeStopNames = null;
+    private double[] osceolaStopTimes = null;
+    private String[] osceolaStopNames = null;
+    private double[] heritageStopTimes = null;
+    private String[] heritageStopNames = null;
 
 
     @Override
@@ -136,26 +140,46 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
     }
 
     public void refreshGoldData(){
-        //nite = 4007312
         //gold = 4008290
         //garnet = 4008288
-        Bus_Route gold = new Bus_Route(4007312);
+        //renegade =4008286
+        //osceola = 4008296
+        //heritage = 4008294
+        Bus_Route gold = new Bus_Route(4008290);
         gold.PredictedTimes();
         goldStopNames = gold.GetStopNames();
         goldStopTimes = gold.GetPredTimes();
     }
 
     public void refreshGarnetData(){
-        Bus_Route garnet = new Bus_Route(4007312);
+        Bus_Route garnet = new Bus_Route(4008288);
         garnet.PredictedTimes();
         garnetStopNames = garnet.GetStopNames();
         garnetStopTimes = garnet.GetPredTimes();
 
     }
 
+    public void refreshRenegadeData(){
+        Bus_Route renegade = new Bus_Route(4008286);
+        renegade.PredictedTimes();
+        renegadeStopNames = renegade.GetStopNames();
+        renegadeStopTimes = renegade.GetPredTimes();
+    }
+
+    public void refreshHeritageData(){
+        Bus_Route heritage = new Bus_Route(4008294);
+        heritage.PredictedTimes();
+        heritageStopNames = heritage.GetStopNames();
+        heritageStopTimes = heritage.GetPredTimes();
+    }
+
     public double[] getGoldPredTimes()   { return goldStopTimes; }
     public String[] getGoldStopNames()   { return goldStopNames; }
     public double[] getGarnetPredTimes() { return garnetStopTimes; }
     public String[] getGarnetStopNames() { return garnetStopNames; }
+    public double[] getRenegadePredTimes() { return renegadeStopTimes; }
+    public String[] getRenegadeStopNames() { return renegadeStopNames; }
+    public double[] getHeritagePredTimes() { return heritageStopTimes; }
+    public String[] getHeritageStopNames() { return heritageStopNames; }
 
 }

@@ -58,7 +58,7 @@ class BusFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     //Number of tabs
     public int getCount() {
-        return 2;
+        return 4;
     }
 
     //Set tab texts
@@ -68,6 +68,12 @@ class BusFragmentPagerAdapter extends FragmentStatePagerAdapter {
         }
         else if (position == 1){
             return "GARNET";
+        }
+        else if (position == 2){
+            return "RENEGADE";
+        }
+        else if (position == 3){
+            return "HERITAGE";
         }
         return "";
     }

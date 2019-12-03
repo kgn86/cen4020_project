@@ -33,6 +33,12 @@ public class RouteFragment extends Fragment {
         else if (i == 1){
             route = "garnet";
         }
+        else if (i == 2){
+            route = "renegade";
+        }
+        else if (i == 3){
+            route = "heritage";
+        }
     }
 
 
@@ -56,6 +62,14 @@ public class RouteFragment extends Fragment {
             helper.refreshGarnetData();
             stopNames = helper.getGarnetStopNames();
             stopTimes = helper.getGarnetPredTimes();
+        } else if (route == "renegade"){
+            helper.refreshRenegadeData();
+            stopNames = helper.getRenegadeStopNames();
+            stopTimes = helper.getRenegadePredTimes();
+        } else if (route == "heritage"){
+            helper.refreshHeritageData();
+            stopNames = helper.getHeritageStopNames();
+            stopTimes = helper.getHeritagePredTimes();
         }
 
         //Creating items for recycler view
@@ -103,9 +117,15 @@ public class RouteFragment extends Fragment {
     public interface OnRouteFragmentInteractionListener {
         void refreshGoldData();
         void refreshGarnetData();
+        void refreshRenegadeData();
+        void refreshHeritageData();
         String[] getGoldStopNames();
         double[] getGoldPredTimes();
         String[] getGarnetStopNames();
         double[] getGarnetPredTimes();
+        String[] getRenegadeStopNames();
+        double[] getRenegadePredTimes();
+        String[] getHeritageStopNames();
+        double[] getHeritagePredTimes();
     }
 }

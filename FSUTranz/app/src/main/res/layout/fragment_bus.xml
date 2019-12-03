@@ -29,6 +29,18 @@
                 android:layout_height="wrap_content"
                 android:text="Tuesday" />
 
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/renegadeTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab4" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tomahawkTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab5" />
+
         </com.google.android.material.tabs.TabLayout>
     </androidx.viewpager.widget.ViewPager>
 
