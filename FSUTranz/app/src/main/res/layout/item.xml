@@ -68,6 +68,31 @@
             android:progress="50"
             android:scaleY="8" />
 
+        <ProgressBar
+            android:id="@+id/futureProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/progressBar"
+            android:layout_alignStart="@+id/progressBar"
+            android:layout_alignLeft="@+id/progressBar"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/futureParking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/parkingSlots"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="6dp"
+            android:layout_toEndOf="@+id/futureProgressBar"
+            android:layout_toRightOf="@+id/futureProgressBar"
+            android:text="+1hr from now"
+            android:textColor="@color/gold" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -34,12 +34,14 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
         public TextView parkingText;
         public TextView remainingSlots;
         public ProgressBar parkingCapacity;
+        public ProgressBar futureCapacity;
 
         public eViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             parkingText = itemView.findViewById(R.id.txtParking);
             remainingSlots = itemView.findViewById(R.id.parkingSlots);
             parkingCapacity = itemView.findViewById(R.id.progressBar);
+            futureCapacity = itemView.findViewById(R.id.futureProgressBar);
 
             //Used to get items positions and make them clickable
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +79,7 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
         holder.parkingText.setText(currentItem.getText1());
         holder.remainingSlots.setText(currentItem.getOpenSlots());
         holder.parkingCapacity.setProgress(currentItem.getProgressNum());
-
+        holder.futureCapacity.setProgress(100);
         //This is only for API levels 21 and above, need to fix this issue. Just used as an example
         //Changes the color of the progress bar based on the current percentage
         if (currentItem.getProgressNum() < 33) {
@@ -86,6 +88,13 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
             holder.parkingCapacity.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
         } else {
             holder.parkingCapacity.setProgressTintList(ColorStateList.valueOf(Color.RED));
+        }
+        if (currentItem.getFutureProgressNum() <= 2) {
+            holder.futureCapacity.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+        } else if (currentItem.getFutureProgressNum() == 3) {
+            holder.futureCapacity.setProgressTintList(ColorStateList.valueOf(Color.YELLOW));
+        } else {
+            holder.futureCapacity.setProgressTintList(ColorStateList.valueOf(Color.RED));
         }
     }
 
