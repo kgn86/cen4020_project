@@ -1,6 +1,8 @@
 package edu.fsu.cs.fsutranz;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.Menu;
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_parking, R.id.navigation_bus)
+                R.id.navigation_parking, R.id.navigation_bus, R.id.navigation_map)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -87,10 +89,8 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.announcements:
-                Toast.makeText(this, "Announcement", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.Info:
-                Toast.makeText(this, "Info", Toast.LENGTH_LONG).show();
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/FSUParking?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"));
+                startActivity(browserIntent);
                 break;
         }
 

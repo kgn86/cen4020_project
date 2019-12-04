@@ -16,4 +16,10 @@
         android:name="edu.fsu.cs.fsutranz.ui.bus.BusFragment"
         android:label="@string/bus_tab"
         tools:layout="@layout/fragment_bus" />
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="edu.fsu.cs.fsutranz.ui.map.MapFragment"
+        android:label="@string/map_tab"
+        tools:layout="@layout/fragment_map" />
 </navigation>
