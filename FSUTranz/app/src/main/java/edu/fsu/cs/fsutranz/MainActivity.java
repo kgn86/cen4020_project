@@ -1,18 +1,12 @@
 package edu.fsu.cs.fsutranz;
 
 
-import java.util.List;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,11 +15,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import edu.fsu.cs.fsutranz.ui.bus.BusFragment;
 import edu.fsu.cs.fsutranz.ui.bus.RouteFragment;
 import edu.fsu.cs.fsutranz.ui.parking.ParkingFragment;
 
@@ -107,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         data = new String[buffer.length];
 
         // if no data is available, the website we are scraping from displays "NO RECORDS" and nothing else...
-        if(!buffer[0].equals("NO RECORDS")) {
+        if(!buffer[0].equals("NO RECORDS") && buffer.length > 1) {
             for (int i = 0; i < usefulIndexes.length; i++) {
                 data[i] = buffer[usefulIndexes[i]];
             }

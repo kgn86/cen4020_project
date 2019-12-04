@@ -51,14 +51,15 @@ public class Bus_Route {
 		this.predTimes = new double[this.stopNames.length];
 		Log.d("STOPS_LENGTH", Integer.toString(this.stopNames.length));
 		Log.d("PREDTIMES_LENGTH", Integer.toString(this.predTimes.length));
-		for (int i = 0; i < this.stopNames.length; i++){
-			long timestamp = arrivalTimestamps.get(i);
-			long currTime = System.currentTimeMillis() / 1000;
-			double predTime = (double)timestamp - (double)currTime;
-			predTime = predTime / 60;
-			this.predTimes[i] = predTime;
+		if(arrivalTimestamps.size() > 0) {
+			for (int i = 0; i < this.stopNames.length; i++) {
+				long timestamp = arrivalTimestamps.get(i);
+				long currTime = System.currentTimeMillis() / 1000;
+				double predTime = (double) timestamp - (double) currTime;
+				predTime = predTime / 60;
+				this.predTimes[i] = predTime;
+			}
 		}
-
 	}
 
 	private void refreshJSON(String link){

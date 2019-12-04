@@ -13,12 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import edu.fsu.cs.fsutranz.Draw_Proto;
 import edu.fsu.cs.fsutranz.R;
 
 public class ParkingFragment extends Fragment {
 
     private OnParkingFragmentInteractionListener helper;
+    private Draw_Proto draw_proto;
+    private List<List<String>> futureVals;
+
 
     private class Garage{
 
@@ -54,6 +59,9 @@ public class ParkingFragment extends Fragment {
 
         String[] data = helper.getData();
         helper.setActionBarTitle();
+
+        draw_proto = new Draw_Proto();
+        futureVals = draw_proto.getValues();
 
         Garage call = new Garage("Call Street");
         Garage stAug = new Garage("Saint Augustine Street");
@@ -94,7 +102,8 @@ public class ParkingFragment extends Fragment {
                 itemList.add(new createItem(
                         garages[i].percentage,
                         Integer.toString((int) Math.floor(garages[i].capacity - (garages[i].capacity * garages[i].percentage / 100))),
-                        garages[i].name));
+                        garages[i].name,
+                        futureVals.get(i).size()));
             }
 
             parkingRecycleView.setHasFixedSize(true); //Fixed size

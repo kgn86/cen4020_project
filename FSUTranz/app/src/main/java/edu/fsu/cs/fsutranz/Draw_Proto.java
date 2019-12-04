@@ -19,11 +19,11 @@ import org.json.JSONObject;
 public class Draw_Proto {
 
     private String link = "http://198.100.154.139";
-    private String jsonString;
+    private String jsonString = "";
     private List<String> names = new ArrayList<>();
     private List<List<String>> values = new ArrayList<>();
 
-    Draw_Proto(){
+    public Draw_Proto(){
         getNamesAndValues();
     }
 
@@ -38,8 +38,6 @@ public class Draw_Proto {
         try {
             json = new JSONObject(jsonString);
             garageNames = (JSONArray) json.names();
-            for (int i = 0; i < garageNames.length(); i++) {
-            }
             for (int i = 0; i < garageNames.length(); i++) {
                 String data = json.get(garageNames.getString(i)).toString();
                 String name = garageNames.getString(i);
@@ -61,20 +59,6 @@ public class Draw_Proto {
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }
-    }
-    //convert the generic occupancy information to an rgb code or /we
-    public String convert_color(String s) {
-        if (s == "low") {
-            return "blue";
-        } else if (s == "med") {
-            return "green";
-        } else if (s == "high") {
-            return "orange";
-        } else if (s == "max") {
-            return "red";
-        } else {
-            return "UNHANDLED STATUS: " + s;
         }
     }
     //refresh data
