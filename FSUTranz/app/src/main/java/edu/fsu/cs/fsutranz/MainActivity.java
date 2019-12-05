@@ -139,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         //gold = 4008290
         //garnet = 4008288
         //renegade =4008286
-        //osceola = 4008296
         //heritage = 4008294
         Bus_Route gold = new Bus_Route(4008290);
         gold.PredictedTimes();

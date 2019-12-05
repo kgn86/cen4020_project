@@ -75,7 +75,14 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
         //Setting the items values based on the information passed to them
         holder.stopName.setText(currentItem.getBusStopName());
         holder.stopNum.setText(Integer.toString(currentItem.getBusStopNum()));
-        holder.arrivingIn.setText("Arriving in " + currentItem.getArrivalTime() + " minutes");
+
+        //Negative arrival time check
+        if (currentItem.getArrivalTime() >= 0.00) {
+            holder.arrivingIn.setText("Arriving in " + currentItem.getArrivalTime() + " minutes");
+        }
+        else {
+            holder.arrivingIn.setText("JUST LEFT");
+        }
 
     }
 

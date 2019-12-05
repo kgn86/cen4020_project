@@ -44,7 +44,6 @@ public class Bus_Route {
 	}
 
 	//Finds predicted time given the name of a stop
-	//Returns -1 if stop name is not found in list of stops
 	public void PredictedTimes() {
 		this.GetArrivals();
 		this.GetStops();

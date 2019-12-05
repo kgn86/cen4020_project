@@ -80,7 +80,6 @@ public class RouteFragment extends Fragment {
             BigDecimal bd = new BigDecimal(Double.toString(stopTimes[i]));
             bd = bd.setScale(2, RoundingMode.HALF_UP);
             double roundedDouble = bd.doubleValue();
-
             items.add(new createItem(stopNames[i], i, roundedDouble));
         }
 
