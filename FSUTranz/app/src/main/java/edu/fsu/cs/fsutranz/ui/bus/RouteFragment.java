@@ -1,7 +1,6 @@
 package edu.fsu.cs.fsutranz.ui.bus;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -39,6 +38,9 @@ public class RouteFragment extends Fragment {
         else if (i == 3){
             route = "heritage";
         }
+        else if (i == 4){
+            route = "nite";
+        }
     }
 
 
@@ -70,6 +72,10 @@ public class RouteFragment extends Fragment {
             helper.refreshHeritageData();
             stopNames = helper.getHeritageStopNames();
             stopTimes = helper.getHeritagePredTimes();
+        } else if (route == "nite"){
+            helper.refreshNiteData();
+            stopNames = helper.getNiteStopNames();
+            stopTimes = helper.getNitePredTimes();
         }
 
         //Creating items for recycler view
@@ -124,6 +130,7 @@ public class RouteFragment extends Fragment {
         void refreshGarnetData();
         void refreshRenegadeData();
         void refreshHeritageData();
+        void refreshNiteData();
         String[] getGoldStopNames();
         double[] getGoldPredTimes();
         String[] getGarnetStopNames();
@@ -132,5 +139,7 @@ public class RouteFragment extends Fragment {
         double[] getRenegadePredTimes();
         String[] getHeritageStopNames();
         double[] getHeritagePredTimes();
+        String[] getNiteStopNames();
+        double[] getNitePredTimes();
     }
 }

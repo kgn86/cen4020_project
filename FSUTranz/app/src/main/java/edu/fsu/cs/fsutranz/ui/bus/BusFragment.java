@@ -58,22 +58,23 @@ class BusFragmentPagerAdapter extends FragmentStatePagerAdapter {
 
     //Number of tabs
     public int getCount() {
-        return 4;
+        return 5;
     }
 
     //Set tab texts
     public CharSequence getPageTitle(int position) {
-        if (position == 0){
-            return "GOLD";
-        }
-        else if (position == 1){
-            return "GARNET";
-        }
-        else if (position == 2){
-            return "RENEGADE";
-        }
-        else if (position == 3){
-            return "HERITAGE";
+
+        switch (position) {
+            case 0:
+                return "GOLD";
+            case 1:
+                return "GARNET";
+            case 2:
+                return "RENEGADE";
+            case 3:
+                return "HERITAGE";
+            case 4:
+                return "NITE";
         }
         return "";
     }
