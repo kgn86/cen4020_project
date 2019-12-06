@@ -76,10 +76,17 @@ public class itemAdapter extends RecyclerView.Adapter<itemAdapter.eViewHolder> {
         holder.stopName.setText(currentItem.getBusStopName());
         holder.stopNum.setText(Integer.toString(currentItem.getBusStopNum()));
 
-        //Negative arrival time check
-        if (currentItem.getArrivalTime() >= 0.00) {
+        //Random double thrown from RouteFragment check
+        if (currentItem.getArrivalTime() == 999888777666555.00){
+            holder.arrivingIn.setText("Buses aren't running for this route.");
+        }
+
+        //OK to use predicted time
+        else if (currentItem.getArrivalTime() >= 0.00) {
             holder.arrivingIn.setText("Arriving in " + currentItem.getArrivalTime() + " minutes");
         }
+
+        //Negative arrival time check
         else {
             holder.arrivingIn.setText("JUST LEFT");
         }

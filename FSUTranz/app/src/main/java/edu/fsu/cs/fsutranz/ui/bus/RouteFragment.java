@@ -76,11 +76,17 @@ public class RouteFragment extends Fragment {
         ArrayList<createItem> items = new ArrayList<>();
         for (int i = 0; i < stopNames.length; i++){
 
-            //Rounds double to two places
-            BigDecimal bd = new BigDecimal(Double.toString(stopTimes[i]));
-            bd = bd.setScale(2, RoundingMode.HALF_UP);
-            double roundedDouble = bd.doubleValue();
-            items.add(new createItem(stopNames[i], i, roundedDouble));
+            if (stopTimes != null){
+                //Rounds double to two places
+                BigDecimal bd = new BigDecimal(Double.toString(stopTimes[i]));
+                bd = bd.setScale(2, RoundingMode.HALF_UP);
+                double roundedDouble = bd.doubleValue();
+                items.add(new createItem(stopNames[i], i+1, roundedDouble));
+
+            } else {
+                //Random double thrown if the bus route isn't running
+                items.add(new createItem(stopNames[i], i+1, 999888777666555.00));
+            }
         }
 
         //Setting up recycler view and its adapter

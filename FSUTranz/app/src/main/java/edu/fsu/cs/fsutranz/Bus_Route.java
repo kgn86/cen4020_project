@@ -32,6 +32,8 @@ public class Bus_Route {
 	private List<Integer> arrivalTimestamps;
 	private List<Integer> stopIDs;
 	private List<Integer> arrivalIDs;
+	private int routeID;
+	private boolean arrivalsError = false;
 
 	public Bus_Route(int routeID) {
 
@@ -40,17 +42,16 @@ public class Bus_Route {
 		this.arrivals_url += Integer.toString(routeID);
 		this.arrivals_url += a_url_end;
 		this.stops_url += Integer.toString(routeID);
-
+		this.routeID = routeID;
 	}
-
 	//Finds predicted time given the name of a stop
 	public void PredictedTimes() {
-		this.GetArrivals();
 		this.GetStops();
+		this.GetArrivals();
 		this.predTimes = new double[this.stopNames.length];
-		Log.d("STOPS_LENGTH", Integer.toString(this.stopNames.length));
-		Log.d("PREDTIMES_LENGTH", Integer.toString(this.predTimes.length));
-		if(arrivalTimestamps.size() > 0) {
+
+		//Error check for closed bus route
+		if(arrivalTimestamps != null) {
 			for (int i = 0; i < this.stopNames.length; i++) {
 				long timestamp = arrivalTimestamps.get(i);
 				long currTime = System.currentTimeMillis() / 1000;
@@ -58,9 +59,10 @@ public class Bus_Route {
 				predTime = predTime / 60;
 				this.predTimes[i] = predTime;
 			}
+		} else {
+			this.predTimes = null;
 		}
 	}
-
 	private void refreshJSON(String link){
 		//Connecting to Transloc API
 		URL url;
@@ -89,7 +91,6 @@ public class Bus_Route {
 			conn.disconnect();
 		}
 	}
-
 	public void GetStops(){
 
 		refreshJSON(this.stops_url);
@@ -129,7 +130,6 @@ public class Bus_Route {
 		}
 		this.stopIDs = s_IDs;
 	}
-
 	public void GetArrivals() {
 
 		refreshJSON(this.arrivals_url);
@@ -159,14 +159,26 @@ public class Bus_Route {
 			e.printStackTrace();
 		}
 
-		this.arrivalTimestamps = timestamps;
+		//Ensure timestamps are valid
+		if (this.stopNames.length == timestamps.size()){
+			this.arrivalTimestamps = timestamps;
+		}
+
+		//Route not currently running
+		else {
+			this.arrivalTimestamps = null;
+		}
 		this.arrivalIDs = a_IDs;
 
 	}
 
-	public double[] GetPredTimes(){ return this.predTimes; }
+	public double[] GetPredTimes(){
+		return this.predTimes;
+	}
 
-	public String[] GetStopNames(){ return this.stopNames; }
+	public String[] GetStopNames(){
+		return this.stopNames;
+	}
 
 }
 
