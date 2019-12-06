@@ -41,19 +41,18 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
 
     private String[] buffer = new String[]{};
     private String[] data;
-
     private String time;
+
     private double[] goldStopTimes = null;
     private String[] goldStopNames = null;
     private double[] garnetStopTimes = null;
     private String[] garnetStopNames = null;
     private double[] renegadeStopTimes = null;
     private String[] renegadeStopNames = null;
-    private double[] osceolaStopTimes = null;
-    private String[] osceolaStopNames = null;
     private double[] heritageStopTimes = null;
     private String[] heritageStopNames = null;
-
+    private double[] niteStopTimes = null;
+    private String[] niteStopNames = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         //garnet = 4008288
         //renegade =4008286
         //heritage = 4008294
+        //nite = 4007312
         Bus_Route gold = new Bus_Route(4008290);
         gold.PredictedTimes();
         goldStopNames = gold.GetStopNames();
@@ -151,7 +151,6 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         garnet.PredictedTimes();
         garnetStopNames = garnet.GetStopNames();
         garnetStopTimes = garnet.GetPredTimes();
-
     }
 
     public void refreshRenegadeData(){
@@ -168,6 +167,13 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
         heritageStopTimes = heritage.GetPredTimes();
     }
 
+    public void refreshNiteData(){
+        Bus_Route nite = new Bus_Route(4007312);
+        nite.PredictedTimes();
+        niteStopNames = nite.GetStopNames();
+        niteStopTimes = nite.GetPredTimes();
+    }
+
     public double[] getGoldPredTimes()   { return goldStopTimes; }
     public String[] getGoldStopNames()   { return goldStopNames; }
     public double[] getGarnetPredTimes() { return garnetStopTimes; }
@@ -176,5 +182,7 @@ public class MainActivity extends AppCompatActivity implements ParkingFragment.O
     public String[] getRenegadeStopNames() { return renegadeStopNames; }
     public double[] getHeritagePredTimes() { return heritageStopTimes; }
     public String[] getHeritageStopNames() { return heritageStopNames; }
+    public double[] getNitePredTimes() { return niteStopTimes; }
+    public String[] getNiteStopNames() { return niteStopNames; }
 
 }

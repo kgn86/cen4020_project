@@ -12,41 +12,54 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/gold"
+            app:tabMaxWidth="264dp"
             app:tabTextColor="@color/gold"
-            app:tabIndicatorColor="@color/gold">
+            app:tabGravity="center"
+            app:tabMode="scrollable"
+            android:layout_gravity="top"
+            android:textAlignment="gravity"
+
+            >
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/goldTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Monday" />
+                android:text="GOLD" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/garnetTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tuesday" />
+                android:text="GARNET" />
 
             <com.google.android.material.tabs.TabItem
                 android:id="@+id/renegadeTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tab4" />
+                android:text="RENEGADE" />
 
             <com.google.android.material.tabs.TabItem
-                android:id="@+id/tomahawkTab"
+                android:id="@+id/heritageTab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tab5" />
+                android:text="HERITAGE" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/niteTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NITE" />
 
         </com.google.android.material.tabs.TabLayout>
     </androidx.viewpager.widget.ViewPager>
 
     <TextView
         android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
+        android:layout_width="403dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
